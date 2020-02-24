@@ -1,6 +1,10 @@
 #!/bin/dumb-init /bin/sh
 set -e
 
+# Enable modules from private repos
+git config --system url."https://$ATLANTIS_GH_TOKEN@github.com/".insteadOf "git@github.com:"
+git config --add --system url."https://$ATLANTIS_GH_TOKEN@github.com".insteadOf "ssh://git@github.com"
+
 # Modified: https://github.com/hashicorp/docker-consul/blob/2c2873f9d619220d1eef0bc46ec78443f55a10b5/0.X/docker-entrypoint.sh
 
 # If the user is trying to run atlantis directly with some arguments, then
